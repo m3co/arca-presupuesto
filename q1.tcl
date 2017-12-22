@@ -58,14 +58,39 @@ namespace eval viewBudget {
 
     set param "apu_description"
     set fr $frame.$param.$id
-    pack [frame $fr] -fill x -expand true
-    pack [label $fr.label -text $row(APU_description)] -side left
+    array set conf [list \
+      from viewBudget \
+      module viewBudget \
+      idkey Keynotes_id \
+      key APU_description \
+      frame [frame $fr] \
+      dollar false \
+      currency false \
+    ]
+    pack $conf(frame) -side top -fill x -expand true
+    labelentry::setup [array get conf] [array get row]
 
-    set param "apu_cost"
-    set fr $frame.$param.$id
-    pack [frame $fr] -fill x -expand true
-    pack [label $fr.label -text "\$[format'currency $row(APU_cost)]"] \
-      -side right
+    if { $row(Keynotes_expand) == "f" } {
+      set param "apu_cost"
+      set fr $frame.$param.$id
+      array set conf [list \
+        from viewBudget \
+        module viewBudget \
+        idkey Keynotes_id \
+        key APU_cost \
+        frame [frame $fr] \
+        dollar true \
+        currency true \
+      ]
+      pack $conf(frame) -side top -fill x -expand true
+      labelentry::setup [array get conf] [array get row]
+    } else {
+      set param "apu_cost"
+      set fr $frame.$param.$id
+      pack [frame $fr] -fill x -expand true
+      pack [label $fr.label -text "\$[format'currency $row(APU_cost)]"] \
+        -side right
+    }
 
     set param "apu_cost_material"
     set fr $frame.$param.$id
@@ -103,18 +128,48 @@ namespace eval viewBudget {
     pack [label $fr.label -text "\$[format'currency $row(APU_cost_subcontrato)]"] \
       -side right
 
-    set param "apu_duration"
-    set fr $frame.$param.$id
-    pack [frame $fr] -fill x -expand true
-    pack [label $fr.label -text "$row(APU_duration) días"] -side right
-    if { $row(APU_duration) == "" } {
-      $fr.label configure -text ""
+    if { $row(Keynotes_expand) == "f" } {
+      set param "apu_duration"
+      set fr $frame.$param.$id
+      array set conf [list \
+        from viewBudget \
+        module viewBudget \
+        idkey Keynotes_id \
+        key APU_duration \
+        frame [frame $fr] \
+        dollar false \
+        currency true \
+      ]
+      pack $conf(frame) -side top -fill x -expand true
+      labelentry::setup [array get conf] [array get row]
+    } else {
+      set param "apu_duration"
+      set fr $frame.$param.$id
+      pack [frame $fr] -fill x -expand true
+      pack [label $fr.label -text "$row(APU_duration)"] -side right
     }
 
-    set param "qtakeoff_qop"
-    set fr $frame.$param.$id
-    pack [frame $fr] -fill x -expand true
-    pack [label $fr.label -text "$row(Qtakeoff_qop) $row(APU_unit)"] -side right
+    if { $row(Keynotes_expand) == "f" } {
+      set param "qtakeoff_qop"
+      set fr $frame.$param.$id
+      array set conf [list \
+      from viewBudget \
+      module viewBudget \
+      idkey Keynotes_id \
+      key Qtakeoff_qop \
+      frame [frame $fr] \
+      dollar false \
+      currency true \
+      ]
+      pack $conf(frame) -side top -fill x -expand true
+      labelentry::setup [array get conf] [array get row]
+    } else {
+      set param "qtakeoff_qop"
+      set fr $frame.$param.$id
+      pack [frame $fr] -fill x -expand true
+      pack [label $fr.label -text "$row(Qtakeoff_qop) $row(APU_unit)"] -side right
+    }
+
   }
 
 }
