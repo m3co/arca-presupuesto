@@ -67,6 +67,42 @@ namespace eval viewBudget {
     pack [label $fr.label -text "\$[format'currency $row(APU_cost)]"] \
       -side right
 
+    set param "apu_cost_material"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_cost_material)]"] \
+      -side right
+
+    set param "apu_cost_mdo"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_cost_mdo)]"] \
+      -side right
+
+    set param "apu_cost_equipo"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_cost_equipo)]"] \
+      -side right
+
+    set param "apu_cost_herramienta"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_cost_herramienta)]"] \
+      -side right
+
+    set param "apu_cost_transporte"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_cost_transporte)]"] \
+      -side right
+
+    set param "apu_cost_subcontrato"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_cost_subcontrato)]"] \
+      -side right
+
     set param "apu_duration"
     set fr $frame.$param.$id
     pack [frame $fr] -fill x -expand true
