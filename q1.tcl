@@ -107,6 +107,9 @@ namespace eval viewBudget {
     set fr $frame.$param.$id
     pack [frame $fr] -fill x -expand true
     pack [label $fr.label -text "$row(APU_duration) días"] -side right
+    if { $row(APU_duration) == "" } {
+      $fr.label configure -text ""
+    }
 
     set param "qtakeoff_qop"
     set fr $frame.$param.$id
