@@ -30,7 +30,7 @@ namespace eval MAIN {
   proc subscribe { } {
     variable chan
     array set event {
-      module fnCostsByKeynote
+      module viewBudget
       query subscribe
     }
     chan puts $chan [array get event]
