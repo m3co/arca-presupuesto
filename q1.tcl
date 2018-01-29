@@ -63,7 +63,7 @@ namespace eval viewBudget {
     ]
     labelentry::setup [array get conf] [array get row] [array get description]
 
-    if { $row(APU_expand) == "f" } {
+    if { $row(APU_expand) == false } {
       set param "apu_cost"
       set fr $frame.$param.$id
       array set conf [list \
@@ -106,7 +106,7 @@ namespace eval viewBudget {
     set fr $frame.$param.$id
     $fr.label configure -text "\$[format'currency $row(APU_cost_subcontrato)]"
 
-    if { $row(APU_expand) == "f" } {
+    if { $row(APU_expand) == false } {
       set param "apu_duration"
       set fr $frame.$param.$id
       array set conf [list \
@@ -125,7 +125,7 @@ namespace eval viewBudget {
       $fr.label configure -text "$row(APU_duration)"
     }
 
-    if { $row(APU_expand) == "f" } {
+    if { $row(APU_expand) == false } {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
       array set conf [list \
@@ -182,7 +182,7 @@ namespace eval viewBudget {
     pack $conf(frame) -side top -fill x -expand true
     labelentry::setup [array get conf] [array get row] [array get description]
 
-    if { $row(APU_expand) == "f" } {
+    if { $row(APU_expand) == false } {
       set param "apu_cost"
       set fr $frame.$param.$id
       array set conf [list \
@@ -240,7 +240,8 @@ namespace eval viewBudget {
     pack [label $fr.label -text "\$[format'currency $row(APU_cost_subcontrato)]"] \
       -side right
 
-    if { $row(APU_expand) == "f" } {
+    if { $row(APU_expand) == false } {
+      puts "ok ok ok"
       set param "apu_duration"
       set fr $frame.$param.$id
       array set conf [list \
@@ -261,7 +262,7 @@ namespace eval viewBudget {
       pack [label $fr.label -text "$row(APU_duration)"] -side right
     }
 
-    if { $row(APU_expand) == "f" } {
+    if { $row(APU_expand) == false } {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
       array set conf [list \
