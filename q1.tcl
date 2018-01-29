@@ -2,6 +2,18 @@
 namespace eval viewBudget {
   variable frame
   variable project
+  variable description
+
+  chan puts $MAIN::chan [json::write object \
+    query [json::write string describe] \
+    module [json::write string viewBudget] \
+  ]
+
+  proc 'do'describe { resp } {
+    upvar $resp response
+    variable description
+    array set description [list {*}$response(description)]
+  }
 
   proc open { space id } {
     variable frame $space
@@ -28,6 +40,7 @@ namespace eval viewBudget {
 
   proc 'do'update { resp } {
     variable frame
+    variable description
     upvar $resp response
     array set row [deserialize $response(row)]
 
@@ -48,7 +61,7 @@ namespace eval viewBudget {
       dollar false \
       currency false \
     ]
-    labelentry::setup [array get conf] [array get row]
+    labelentry::setup [array get conf] [array get row] [array get description]
 
     if { $row(APU_expand) == "f" } {
       set param "apu_cost"
@@ -62,7 +75,7 @@ namespace eval viewBudget {
         dollar true \
         currency true \
       ]
-      labelentry::setup [array get conf] [array get row]
+      labelentry::setup [array get conf] [array get row] [array get description]
     } else {
       set param "apu_cost"
       set fr $frame.$param.$id
@@ -105,7 +118,7 @@ namespace eval viewBudget {
         dollar false \
         currency true \
       ]
-      labelentry::setup [array get conf] [array get row]
+      labelentry::setup [array get conf] [array get row] [array get description]
     } else {
       set param "apu_duration"
       set fr $frame.$param.$id
@@ -124,7 +137,7 @@ namespace eval viewBudget {
       dollar false \
       currency true \
       ]
-      labelentry::setup [array get conf] [array get row]
+      labelentry::setup [array get conf] [array get row] [array get description]
     } else {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
@@ -144,6 +157,7 @@ namespace eval viewBudget {
 
   proc 'do'select { resp } {
     variable frame
+    variable description
     upvar $resp response
     array set row [deserialize $response(row)]
 
@@ -166,7 +180,7 @@ namespace eval viewBudget {
       currency false \
     ]
     pack $conf(frame) -side top -fill x -expand true
-    labelentry::setup [array get conf] [array get row]
+    labelentry::setup [array get conf] [array get row] [array get description]
 
     if { $row(APU_expand) == "f" } {
       set param "apu_cost"
@@ -181,7 +195,7 @@ namespace eval viewBudget {
         currency true \
       ]
       pack $conf(frame) -side top -fill x -expand true
-      labelentry::setup [array get conf] [array get row]
+      labelentry::setup [array get conf] [array get row] [array get description]
     } else {
       set param "apu_cost"
       set fr $frame.$param.$id
@@ -239,7 +253,7 @@ namespace eval viewBudget {
         currency true \
       ]
       pack $conf(frame) -side top -fill x -expand true
-      labelentry::setup [array get conf] [array get row]
+      labelentry::setup [array get conf] [array get row] [array get description]
     } else {
       set param "apu_duration"
       set fr $frame.$param.$id
@@ -260,7 +274,7 @@ namespace eval viewBudget {
       currency true \
       ]
       pack $conf(frame) -side top -fill x -expand true
-      labelentry::setup [array get conf] [array get row]
+      labelentry::setup [array get conf] [array get row] [array get description]
     } else {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
