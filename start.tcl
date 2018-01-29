@@ -29,17 +29,17 @@ namespace eval MAIN {
 
   proc subscribe { } {
     variable chan
-    array set event {
-      module viewBudget
-      query subscribe
-    }
-    chan puts $chan [array get event]
+    set event {{
+      "module": "viewBudget",
+      "query": "subscribe"
+    }}
+    chan puts $chan [regsub -all {\n} $event {}]
 
-    array set event {
-      module Projects
-      query subscribe
-    }
-    chan puts $chan [array get event]
+    set event {{
+      "module": "Projects",
+      "query": "subscribe"
+    }}
+    chan puts $chan [regsub -all {\n} $event {}]
   }
   subscribe
 }
