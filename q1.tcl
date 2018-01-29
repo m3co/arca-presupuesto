@@ -6,11 +6,10 @@ namespace eval viewBudget {
   proc open { space id } {
     variable frame $space
     variable project $id
-    array set event [list \
-      query select \
-      module viewBudget \
-      from viewBudget \
-      keynote $id
+    set event [dict create \
+      query {"select"} \
+      module {"viewBudget"} \
+      keynote [json::write string $id]
     ]
 
     pack [labelframe $frame.keynotes_id -text "Codigo"] -side left
@@ -24,7 +23,7 @@ namespace eval viewBudget {
     pack [labelframe $frame.apu_cost_equipo -text "Costo Equipo"] -side left
     pack [labelframe $frame.apu_cost_transporte -text "Costo Transporte"] -side left
     pack [labelframe $frame.apu_cost_subcontrato -text "Costo Subcontrato"] -side left
-    chan puts $MAIN::chan [array get event]
+    chan puts $MAIN::chan [json::write object {*}$event]
   }
 
   proc 'do'update { resp } {
