@@ -26,9 +26,10 @@ namespace eval viewBudget {
 
     pack [labelframe $frame.apu_id -text "Codigo"] -side left
     pack [labelframe $frame.apu_description -text "Descripcion"] -side left
+    pack [labelframe $frame.apu_partial_cost -text "Costo Total"] -side left
     pack [labelframe $frame.qtakeoff_qop -text "Cantidad"] -side left
     pack [labelframe $frame.apu_duration -text "Duracion"] -side left
-    pack [labelframe $frame.apu_cost -text "Costo Total"] -side left
+    pack [labelframe $frame.apu_cost -text "Costo Unitario"] -side left
     pack [labelframe $frame.apu_cost_material -text "Costo Material"] -side left
     pack [labelframe $frame.apu_cost_mdo -text "Costo Mano de Obra"] -side left
     pack [labelframe $frame.apu_cost_herramienta -text "Costo Herramienta"] -side left
@@ -81,6 +82,10 @@ namespace eval viewBudget {
       set fr $frame.$param.$id
       $fr.label configure -text "\$[format'currency $row(APU_cost)]"
    }
+
+    set param "apu_partial_cost"
+    set fr $frame.$param.$id
+    $fr.label configure -text "\$[format'currency $row(APU_partial_cost)]"
 
     set param "apu_cost_material"
     set fr $frame.$param.$id
@@ -204,6 +209,12 @@ namespace eval viewBudget {
         -side right
     }
 
+    set param "apu_partial_cost"
+    set fr $frame.$param.$id
+    pack [frame $fr] -fill x -expand true
+    pack [label $fr.label -text "\$[format'currency $row(APU_partial_cost)]"] \
+      -side right
+
     set param "apu_cost_material"
     set fr $frame.$param.$id
     pack [frame $fr] -fill x -expand true
@@ -241,7 +252,6 @@ namespace eval viewBudget {
       -side right
 
     if { $row(APU_expand) == false } {
-      puts "ok ok ok"
       set param "apu_duration"
       set fr $frame.$param.$id
       array set conf [list \
