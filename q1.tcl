@@ -197,12 +197,30 @@ namespace eval viewBudget {
     upvar $resp response
     array set row [deserialize $response(row)]
 
+    set bgcolori [regexp -all {[.]} $row(APU_id)]
+    set bgc [. cget -background]
+    if { $bgcolori == 0 } {
+      set bgc yellow
+    }
+    if { $bgcolori == 1 } {
+      set bgc red
+    }
+    if { $bgcolori == 2 } {
+      set bgc green
+    }
+    if { $bgcolori == 3 } {
+      set bgc blue
+    }
+    if { $row(APU_expand) == false } {
+      set bgc [. cget -background]
+    }
+
     set id [regsub -all {[.]} $row(APU_id) "_"]
 
     set param "apu_id"
     set fr $frame.$param.$id
-    pack [frame $fr] -fill x -expand true
-    pack [label $fr.label -text $row(APU_id)] -side left
+    pack [frame $fr -bg $bgc] -fill x -expand true
+    pack [label $fr.label -text $row(APU_id) -bg $bgc] -side left
 
     set param "apu_description"
     set fr $frame.$param.$id
@@ -211,6 +229,7 @@ namespace eval viewBudget {
       module viewBudget \
       idkey APU_id \
       key APU_description \
+      bg green \
       frame [frame $fr] \
       dollar false \
       currency false \
@@ -226,7 +245,8 @@ namespace eval viewBudget {
         module viewBudget \
         idkey APU_id \
         key APU_cost \
-        frame [frame $fr] \
+        bg green \
+        frame [frame $fr -bg green] \
         dollar true \
         currency true \
       ]
@@ -235,8 +255,8 @@ namespace eval viewBudget {
     } else {
       set param "apu_cost"
       set fr $frame.$param.$id
-      pack [frame $fr] -fill x -expand true
-      pack [label $fr.label -text "\$[format'currency $row(APU_cost)]"] \
+      pack [frame $fr -bg green] -fill x -expand true
+      pack [label $fr.label -bg green -text "\$[format'currency $row(APU_cost)]"] \
         -side right
     }
 
