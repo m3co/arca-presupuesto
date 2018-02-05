@@ -51,6 +51,13 @@ namespace eval viewBudget {
     upvar $resp response
     array set row [deserialize $response(row)]
 
+    if { [info exists frame] != 1 } {
+      return
+    }
+    if { [string range $row(APU_id) 0 0] == "-" } {
+      return
+    }
+
     set id [regsub -all {[.]} $row(APU_id) "_"]
 
     set param "apu_id"
