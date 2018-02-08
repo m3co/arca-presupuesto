@@ -26,6 +26,9 @@ namespace eval viewBudget {
 
     pack [labelframe $frame.apu_id -text "Codigo"] -side left
     pack [labelframe $frame.apu_description -text "Descripcion"] -side left
+    pack [labelframe $frame.qtakeoff_qop -text "Cantidad"] -side left
+    pack [labelframe $frame.apu_duration -text "Duracion"] -side left
+    pack [labelframe $frame.apu_cost -text "Costo Unitario"] -side left
     pack [labelframe $frame.apu_partial_cost -text "Costo Parcial"] -side left
     pack [labelframe $frame.apu_partial_cost_material -text "Costo Parcial Material"] -side left
     pack [labelframe $frame.apu_partial_cost_mdo -text "Costo Parcial Mano de Obra"] -side left
@@ -33,9 +36,6 @@ namespace eval viewBudget {
     pack [labelframe $frame.apu_partial_cost_equipo -text "Costo Parcial Equipo"] -side left
     pack [labelframe $frame.apu_partial_cost_transporte -text "Costo Parcial Transporte"] -side left
     pack [labelframe $frame.apu_partial_cost_subcontrato -text "Costo Parcial Subcontrato"] -side left
-    pack [labelframe $frame.qtakeoff_qop -text "Cantidad"] -side left
-    pack [labelframe $frame.apu_duration -text "Duracion"] -side left
-    pack [labelframe $frame.apu_cost -text "Costo Unitario"] -side left
     pack [labelframe $frame.apu_cost_material -text "Costo Material"] -side left
     pack [labelframe $frame.apu_cost_mdo -text "Costo Mano de Obra"] -side left
     pack [labelframe $frame.apu_cost_herramienta -text "Costo Herramienta"] -side left
