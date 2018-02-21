@@ -65,6 +65,19 @@ namespace eval viewBudget {
     set fr $frame.$param.$id
     $fr.label configure -text $row(APU_id)
 
+    set param "apu_unit"
+    set fr $frame.$param.$id
+    array set conf [list \
+      from viewBudget \
+      module viewBudget \
+      idkey APU_id \
+      key APU_unit \
+      frame $fr \
+      dollar false \
+      currency false \
+    ]
+    labelentry::setup [array get conf] [array get row] [array get description]
+
     set param "apu_description"
     set fr $frame.$param.$id
     array set conf [list \
@@ -282,10 +295,19 @@ namespace eval viewBudget {
 
     set param "apu_unit"
     set fr $frame.$param.$id
-    pack [frame $fr -bg $bbgct] -fill x -expand true
-    pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text [expr { $row(APU_unit) == "null" ? "" : $row(APU_unit) }] ] \
-      -side right
+    array set conf [list \
+      from viewBudget \
+      module viewBudget \
+      idkey APU_id \
+      key APU_unit \
+      bg $bgc \
+      bbg $bbgct \
+      frame [frame $fr -bg $bbgct] \
+      dollar false \
+      currency false \
+    ]
+    pack $conf(frame) -side top -fill x -expand true
+    labelentry::setup [array get conf] [array get row] [array get description]
 
     set param "apu_partial_cost"
     set fr $frame.$param.$id
