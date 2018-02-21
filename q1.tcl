@@ -27,6 +27,7 @@ namespace eval viewBudget {
     pack [labelframe $frame.apu_id -text "Codigo"] -side left
     pack [labelframe $frame.apu_description -text "Descripcion"] -side left
     pack [labelframe $frame.qtakeoff_qop -text "Cantidad"] -side left
+    pack [labelframe $frame.apu_unit -text "-"] -side left
     pack [labelframe $frame.apu_duration -text "Duracion"] -side left
     pack [labelframe $frame.apu_cost -text "Costo Unitario"] -side left
     pack [labelframe $frame.apu_partial_cost -text "Costo Parcial"] -side left
@@ -184,7 +185,7 @@ namespace eval viewBudget {
     } else {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
-      $fr.label configure -text "$row(Qtakeoff_qop) $row(APU_unit)"
+      $fr.label configure -text "$row(Qtakeoff_qop)"
     }
   }
 
@@ -275,6 +276,13 @@ namespace eval viewBudget {
         -bg $bbgct -text "\$[format'currency $row(APU_cost)]"] \
         -side right
     }
+
+    set param "apu_unit"
+    set fr $frame.$param.$id
+    pack [frame $fr -bg $bbgct] -fill x -expand true
+    pack [label $fr.label -fg $bgc \
+      -bg $bbgct -text [expr { $row(APU_unit) == "null" ? "" : $row(APU_unit) }] ] \
+      -side right
 
     set param "apu_partial_cost"
     set fr $frame.$param.$id
