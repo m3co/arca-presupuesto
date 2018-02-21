@@ -210,19 +210,19 @@ namespace eval viewBudget {
     set bbgct [. cget -background]
     if { $bgcolori == 0 } {
       set bgc brown
-      set bbgct gray85
+      set bbgct gray83
     }
     if { $bgcolori == 1 } {
       set bgc red
-      set bbgct gray80
+      set bbgct gray87
     }
     if { $bgcolori == 2 } {
       set bgc blue
-      set bbgct gray75
+      set bbgct gray91
     }
     if { $bgcolori == 3 } {
       set bgc green4
-      set bbgct gray70
+      set bbgct gray95
     }
     if { $row(APU_expand) == false } {
       set bgc black
