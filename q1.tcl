@@ -227,6 +227,9 @@ namespace eval viewBudget {
     if { $row(APU_expand) == false } {
       set bgc black
       set bbgct [. cget -background]
+      if { [array get row APU_is_estimated] == "APU_is_estimated true" } {
+        set bgc gold3
+      }
     }
 
     set id [regsub -all {[.]} $row(APU_id) "_"]
