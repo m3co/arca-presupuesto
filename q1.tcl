@@ -65,6 +65,9 @@ namespace eval viewBudget {
     set fr $frame.$param.$id
     $fr.label configure -text $row(APU_id)
 
+    if { $row(APU_unit) == "null" } {
+      set row(APU_unit) ""
+    }
     set param "apu_unit"
     set fr $frame.$param.$id
     array set conf [list \
@@ -177,6 +180,9 @@ namespace eval viewBudget {
       ]
       labelentry::setup [array get conf] [array get row] [array get description]
     } else {
+      if { $row(APU_duration) == "null" } {
+        set row(APU_duration) ""
+      }
       set param "apu_duration"
       set fr $frame.$param.$id
       $fr.label configure -text "$row(APU_duration)"
@@ -196,9 +202,12 @@ namespace eval viewBudget {
       ]
       labelentry::setup [array get conf] [array get row] [array get description]
     } else {
+      if { $row(Qtakeoff_qop) == "null" } {
+        set row(Qtakeoff_qop) ""
+      }
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
-      $fr.label configure -text "$row(Qtakeoff_qop)"
+      $fr.label configure -text "$row(Qtakeoff_qop) $row(APU_unit)"
     }
   }
 
