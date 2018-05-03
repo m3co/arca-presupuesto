@@ -55,26 +55,26 @@ namespace eval viewBudget {
     if { [info exists frame] != 1 } {
       return
     }
-    if { [string range $row(APU_id) 0 0] == "-" } {
+    if { [string range $row(AAU_id) 0 0] == "-" } {
       return
     }
 
-    set id [regsub -all {[.]} $row(APU_id) "_"]
+    set id [regsub -all {[.]} $row(AAU_id) "_"]
 
     set param "apu_id"
     set fr $frame.$param.$id
-    $fr.label configure -text $row(APU_id)
+    $fr.label configure -text $row(AAU_id)
 
-    if { $row(APU_unit) == "null" } {
-      set row(APU_unit) ""
+    if { $row(AAU_unit) == "null" } {
+      set row(AAU_unit) ""
     }
     set param "apu_unit"
     set fr $frame.$param.$id
     array set conf [list \
       from viewBudget \
       module viewBudget \
-      idkey APU_id \
-      key APU_unit \
+      idkey AAU_id \
+      key AAU_unit \
       frame $fr \
       dollar false \
       currency false \
@@ -86,22 +86,22 @@ namespace eval viewBudget {
     array set conf [list \
       from viewBudget \
       module viewBudget \
-      idkey APU_id \
-      key APU_description \
+      idkey AAU_id \
+      key AAU_description \
       frame $fr \
       dollar false \
       currency false \
     ]
     labelentry::setup [array get conf] [array get row] [array get description]
 
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set param "apu_cost"
       set fr $frame.$param.$id
       array set conf [list \
         from viewBudget \
         module viewBudget \
-        idkey APU_id \
-        key APU_cost \
+        idkey AAU_id \
+        key AAU_cost \
         frame $fr \
         dollar true \
         currency true \
@@ -110,91 +110,91 @@ namespace eval viewBudget {
     } else {
       set param "apu_cost"
       set fr $frame.$param.$id
-      $fr.label configure -text "\$[format'currency $row(APU_cost)]"
+      $fr.label configure -text "\$[format'currency $row(AAU_cost)]"
    }
 
     set param "apu_partial_cost"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost)]"
 
     set param "apu_partial_cost_material"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost_material)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost_material)]"
 
     set param "apu_partial_cost_mdo"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost_mdo)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost_mdo)]"
 
     set param "apu_partial_cost_equipo"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost_equipo)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost_equipo)]"
 
     set param "apu_partial_cost_herramienta"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost_herramienta)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost_herramienta)]"
 
     set param "apu_partial_cost_transporte"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost_transporte)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost_transporte)]"
 
     set param "apu_partial_cost_subcontrato"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_partial_cost_subcontrato)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_partial_cost_subcontrato)]"
 
 
     set param "apu_cost_material"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_cost_material)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_cost_material)]"
 
     set param "apu_cost_mdo"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_cost_mdo)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_cost_mdo)]"
 
     set param "apu_cost_equipo"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_cost_equipo)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_cost_equipo)]"
 
     set param "apu_cost_herramienta"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_cost_herramienta)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_cost_herramienta)]"
 
     set param "apu_cost_transporte"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_cost_transporte)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_cost_transporte)]"
 
     set param "apu_cost_subcontrato"
     set fr $frame.$param.$id
-    $fr.label configure -text "\$[format'currency $row(APU_cost_subcontrato)]"
+    $fr.label configure -text "\$[format'currency $row(AAU_cost_subcontrato)]"
 
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set param "apu_duration"
       set fr $frame.$param.$id
       array set conf [list \
         from viewBudget \
         module viewBudget \
-        idkey APU_id \
-        key APU_duration \
+        idkey AAU_id \
+        key AAU_duration \
         frame $fr \
         dollar false \
         currency true \
       ]
       labelentry::setup [array get conf] [array get row] [array get description]
     } else {
-      if { $row(APU_duration) == "null" } {
-        set row(APU_duration) ""
+      if { $row(AAU_duration) == "null" } {
+        set row(AAU_duration) ""
       }
       set param "apu_duration"
       set fr $frame.$param.$id
-      $fr.label configure -text "$row(APU_duration)"
+      $fr.label configure -text "$row(AAU_duration)"
     }
 
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
       array set conf [list \
       from viewBudget \
       module viewBudget \
-      idkey APU_id \
+      idkey AAU_id \
       key Qtakeoff_qop \
       frame $fr \
       dollar false \
@@ -207,7 +207,7 @@ namespace eval viewBudget {
       }
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
-      $fr.label configure -text "$row(Qtakeoff_qop) $row(APU_unit)"
+      $fr.label configure -text "$row(Qtakeoff_qop) $row(AAU_unit)"
     }
   }
 
@@ -227,7 +227,7 @@ namespace eval viewBudget {
     upvar $resp response
     array set row [deserialize $response(row)]
 
-    set bgcolori [regexp -all {[.]} $row(APU_id)]
+    set bgcolori [regexp -all {[.]} $row(AAU_id)]
     set bgc [. cget -background]
     set bbgct [. cget -background]
     if { $bgcolori == 0 } {
@@ -246,28 +246,28 @@ namespace eval viewBudget {
       set bgc green4
       set bbgct gray95
     }
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set bgc black
       set bbgct [. cget -background]
-      if { [array get row APU_is_estimated] == "APU_is_estimated true" } {
+      if { [array get row AAU_is_estimated] == "APU_is_estimated true" } {
         set bgc gold3
       }
     }
 
-    set id [regsub -all {[.]} $row(APU_id) "_"]
+    set id [regsub -all {[.]} $row(AAU_id) "_"]
 
     set param "apu_id"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
-    pack [label $fr.label -text $row(APU_id) -fg $bgc -bg $bbgct] -side left
+    pack [label $fr.label -text $row(AAU_id) -fg $bgc -bg $bbgct] -side left
 
     set param "apu_description"
     set fr $frame.$param.$id
     array set conf [list \
       from viewBudget \
       module viewBudget \
-      idkey APU_id \
-      key APU_description \
+      idkey AAU_id \
+      key AAU_description \
       bg $bgc \
       bbg $bbgct \
       frame [frame $fr -bg $bbgct] \
@@ -277,14 +277,14 @@ namespace eval viewBudget {
     pack $conf(frame) -side top -fill x -expand true
     labelentry::setup [array get conf] [array get row] [array get description]
 
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set param "apu_cost"
       set fr $frame.$param.$id
       array set conf [list \
         from viewBudget \
         module viewBudget \
-        idkey APU_id \
-        key APU_cost \
+        idkey AAU_id \
+        key AAU_cost \
         bg $bgc \
         bbg $bbgct \
         frame [frame $fr -bg $bbgct] \
@@ -298,7 +298,7 @@ namespace eval viewBudget {
       set fr $frame.$param.$id
       pack [frame $fr -bg $bbgct] -fill x -expand true
       pack [label $fr.label -fg $bgc \
-        -bg $bbgct -text "\$[format'currency $row(APU_cost)]"] \
+        -bg $bbgct -text "\$[format'currency $row(AAU_cost)]"] \
         -side right
     }
 
@@ -307,8 +307,8 @@ namespace eval viewBudget {
     array set conf [list \
       from viewBudget \
       module viewBudget \
-      idkey APU_id \
-      key APU_unit \
+      idkey AAU_id \
+      key AAU_unit \
       bg $bgc \
       bbg $bbgct \
       frame [frame $fr -bg $bbgct] \
@@ -322,101 +322,101 @@ namespace eval viewBudget {
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost)]"] \
       -side right
 
     set param "apu_partial_cost_material"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost_material)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost_material)]"] \
       -side right
 
     set param "apu_partial_cost_mdo"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost_mdo)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost_mdo)]"] \
       -side right
 
     set param "apu_partial_cost_equipo"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost_equipo)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost_equipo)]"] \
       -side right
 
     set param "apu_partial_cost_herramienta"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost_herramienta)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost_herramienta)]"] \
       -side right
 
     set param "apu_partial_cost_transporte"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost_transporte)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost_transporte)]"] \
       -side right
 
     set param "apu_partial_cost_subcontrato"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_partial_cost_subcontrato)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_partial_cost_subcontrato)]"] \
       -side right
 
     set param "apu_cost_material"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_cost_material)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_cost_material)]"] \
       -side right
 
     set param "apu_cost_mdo"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_cost_mdo)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_cost_mdo)]"] \
       -side right
 
     set param "apu_cost_equipo"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_cost_equipo)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_cost_equipo)]"] \
       -side right
 
     set param "apu_cost_herramienta"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_cost_herramienta)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_cost_herramienta)]"] \
       -side right
 
     set param "apu_cost_transporte"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_cost_transporte)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_cost_transporte)]"] \
       -side right
 
     set param "apu_cost_subcontrato"
     set fr $frame.$param.$id
     pack [frame $fr -bg $bbgct] -fill x -expand true
     pack [label $fr.label -fg $bgc \
-      -bg $bbgct -text "\$[format'currency $row(APU_cost_subcontrato)]"] \
+      -bg $bbgct -text "\$[format'currency $row(AAU_cost_subcontrato)]"] \
       -side right
 
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set param "apu_duration"
       set fr $frame.$param.$id
       array set conf [list \
         from viewBudget \
         module viewBudget \
-        idkey APU_id \
-        key APU_duration \
+        idkey AAU_id \
+        key AAU_duration \
         bg $bgc \
         bbg $bbgct \
         frame [frame $fr -bg $bbgct] \
@@ -428,22 +428,22 @@ namespace eval viewBudget {
     } else {
       set param "apu_duration"
       set fr $frame.$param.$id
-      if { $row(APU_duration) == "null" } {
-        set row(APU_duration) ""
+      if { $row(AAU_duration) == "null" } {
+        set row(AAU_duration) ""
       }
       pack [frame $fr -bg $bbgct] -fill x -expand true
       pack [label $fr.label -fg $bgc \
-        -bg $bbgct -text "$row(APU_duration)"] \
+        -bg $bbgct -text "$row(AAU_duration)"] \
         -side right
     }
 
-    if { $row(APU_expand) == false } {
+    if { $row(AAU_expand) == false } {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
       array set conf [list \
       from viewBudget \
       module viewBudget \
-      idkey APU_id \
+      idkey AAU_id \
       key Qtakeoff_qop \
       bg $bgc \
       bbg $bbgct \
@@ -457,14 +457,14 @@ namespace eval viewBudget {
       set param "qtakeoff_qop"
       set fr $frame.$param.$id
       pack [frame $fr -bg $bbgct] -fill x -expand true
-      if { $row(APU_unit) == "null" } {
-        set row(APU_unit) ""
+      if { $row(AAU_unit) == "null" } {
+        set row(AAU_unit) ""
       }
       if { $row(Qtakeoff_qop) == "null" } {
         set row(Qtakeoff_qop) ""
       }
       pack [label $fr.label -fg $bgc \
-        -bg $bbgct -text "$row(Qtakeoff_qop) $row(APU_unit)"] \
+        -bg $bbgct -text "$row(Qtakeoff_qop) $row(AAU_unit)"] \
         -side right
     }
 
