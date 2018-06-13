@@ -252,6 +252,9 @@ namespace eval viewBudget {
       if { [array get row AAU_is_estimated] == "APU_is_estimated true" } {
         set bgc gold3
       }
+      if { [array get row APU_defined] == "APU_defined true" } {
+        set bgc yellow
+      }
     }
 
     set id [regsub -all {[.]} $row(AAU_id) "_"]
