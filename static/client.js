@@ -1,8 +1,17 @@
 'use strict';
 ((io) => {
   var client = io();
+  var ProjectId = location.search.match(/\d+$/);
   client.on('connect', () => {
     console.log('connection');
+
+    if (ProjectId) {
+      client.emit('data', {
+        query: 'select',
+        module: 'viewBudget',
+        keynote: ProjectId
+      });
+    }
 
     client.emit('data', {
       query: 'subscribe',
@@ -11,8 +20,7 @@
 
     client.emit('data', {
       query: 'select',
-      module: 'viewBudget',
-      keynote: '8'
+      module: 'Projects'
     });
   });
 
@@ -27,6 +35,8 @@
         else {
           console.log('sin procesar viewBudget');
         }
+      } else if (query == 'select' && data.module == 'Projects') {
+        window.projects.doselect(data.row);
       } else {
         console.log('sin procesar', data);
       }
